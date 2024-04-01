@@ -9,8 +9,10 @@ android {
 
     defaultConfig {
         applicationId = "com.github.deweyreed.bluetooth.qs"
-        minSdk = 31
-        targetSdk = 34
+        minSdk = 30
+        // Target 30 to toggle the bluetooth without any permission
+        // noinspection ExpiredTargetSdkVersion
+        targetSdk = 30
         versionCode = 1
         versionName = "1.0"
 
