@@ -24,18 +24,21 @@ class BluetoothTileService : TileService(), BluetoothBroadcastReceiver.BlueTooth
     override fun onBluetoothEnabled() {
         qsTile.state = Tile.STATE_ACTIVE
         qsTile.icon = Icon.createWithResource(this, R.drawable.round_bluetooth_24)
+        qsTile.subtitle = "On"
         qsTile.updateTile()
     }
 
     override fun onBluetoothConnected() {
         qsTile.state = Tile.STATE_ACTIVE
         qsTile.icon = Icon.createWithResource(this, R.drawable.round_bluetooth_connected_24)
+        qsTile.subtitle = "Connected"
         qsTile.updateTile()
     }
 
     override fun onBluetoothDisabled() {
         qsTile.state = Tile.STATE_INACTIVE
         qsTile.icon = Icon.createWithResource(this, R.drawable.round_bluetooth_disabled_24)
+        qsTile.subtitle = "Off"
         qsTile.updateTile()
     }
 
