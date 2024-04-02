@@ -27,8 +27,11 @@ fun Context.disableBluetooth() {
 }
 
 fun Context.isBluetoothEnabled(): Boolean {
-    val state = bluetoothAdapter().state
-    return state == BluetoothAdapter.STATE_ON || state == BluetoothAdapter.STATE_TURNING_ON
+    return bluetoothAdapter().state.isBluetoothStateEnabled()
+}
+
+fun Int.isBluetoothStateEnabled(): Boolean {
+    return this == BluetoothAdapter.STATE_ON || this == BluetoothAdapter.STATE_TURNING_ON
 }
 
 fun Context.isBluetoothConnected(): Boolean {

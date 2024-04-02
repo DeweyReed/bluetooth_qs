@@ -26,12 +26,37 @@ class BluetoothBroadcastReceiver(
         ) {
             return
         }
-        updateState(context)
+        updateState(
+            context = context,
+            isEnabled = if (intent.hasExtra(BluetoothAdapter.EXTRA_STATE)) {
+                intent.getIntExtra(
+                    BluetoothAdapter.EXTRA_STATE,
+                    BluetoothAdapter.STATE_OFF
+                ).isBluetoothStateEnabled()
+            } else {
+                context.isBluetoothEnabled()
+            },
+            isConnected = if (intent.hasExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE)) {
+                intent.getIntExtra(
+                    BluetoothAdapter.EXTRA_CONNECTION_STATE,
+                    BluetoothAdapter.STATE_DISCONNECTED
+                ).let {
+                    it == BluetoothAdapter.STATE_CONNECTED ||
+                            it == BluetoothAdapter.STATE_CONNECTING
+                }
+            } else {
+                context.isBluetoothConnected()
+            }
+        )
     }
 
-    private fun updateState(context: Context) {
-        if (context.isBluetoothEnabled()) {
-            if (context.isBluetoothConnected()) {
+    private fun updateState(
+        context: Context,
+        isEnabled: Boolean = context.isBluetoothEnabled(),
+        isConnected: Boolean = context.isBluetoothConnected(),
+    ) {
+        if (isEnabled) {
+            if (isConnected) {
                 listener.onBluetoothConnected()
             } else {
                 listener.onBluetoothEnabled()
