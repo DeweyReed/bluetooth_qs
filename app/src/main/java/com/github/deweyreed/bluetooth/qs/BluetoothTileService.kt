@@ -9,7 +9,7 @@ import android.provider.Settings
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 
-class BluetoothTileService : TileService(), BluetoothBroadcastReceiver.BlueToothStateListener {
+class BluetoothTileService : TileService(), BluetoothBroadcastReceiver.BluetoothStateListener {
     private var receiver: BroadcastReceiver? = null
 
     override fun onClick() {

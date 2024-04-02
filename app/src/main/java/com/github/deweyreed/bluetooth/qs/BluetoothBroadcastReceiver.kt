@@ -8,9 +8,9 @@ import android.content.Intent
 import android.content.IntentFilter
 
 class BluetoothBroadcastReceiver(
-    private val listener: BlueToothStateListener,
+    private val listener: BluetoothStateListener,
 ) : BroadcastReceiver() {
-    interface BlueToothStateListener {
+    interface BluetoothStateListener {
         fun onBluetoothEnabled()
         fun onBluetoothConnected()
         fun onBluetoothDisabled()
@@ -67,7 +67,7 @@ class BluetoothBroadcastReceiver(
     }
 
     companion object {
-        fun register(context: Context, listener: BlueToothStateListener): BroadcastReceiver {
+        fun register(context: Context, listener: BluetoothStateListener): BroadcastReceiver {
             val receiver = BluetoothBroadcastReceiver(listener)
             receiver.updateState(context)
             context.registerReceiver(
