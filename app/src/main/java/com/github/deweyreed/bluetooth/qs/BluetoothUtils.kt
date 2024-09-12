@@ -16,20 +16,8 @@ private fun Context.bluetoothAdapter(): BluetoothAdapter {
 
 @SuppressLint("MissingPermission")
 fun Context.enableBluetooth() {
-    if (isBluetoothEnabled()) return
     @Suppress("DEPRECATION")
-    bluetoothAdapter().run {
-        enable()
-        // Enabling once doesn't work on some devices, so we enable twice.
-        while (!isBluetoothEnabled()) {
-            // Wait
-        }
-        disable()
-        while (isBluetoothEnabled()) {
-            // Wait
-        }
-        enable()
-    }
+    bluetoothAdapter().enable()
 }
 
 @SuppressLint("MissingPermission")
