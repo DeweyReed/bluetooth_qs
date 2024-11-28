@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.github.deweyreed.bluetooth.qs"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.github.deweyreed.bluetooth.qs"
